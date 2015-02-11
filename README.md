@@ -1,4 +1,4 @@
-iojs.jp-blog
+[WIP] iojs.jp-blog
 ============
 
 iojs.jp blog prototype
