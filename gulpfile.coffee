@@ -7,7 +7,6 @@ exports.paths = paths =
   posts: 'articles/weekly/*.md'
   jade: 'src/*.jade'
   styl: 'src/*.styl'
-  coffee: 'src/*.coffee'
   dest: 'build/'
 
 [
@@ -19,11 +18,10 @@ gulp.task 'styl', ->
     .pipe styl()
     .pipe gulp.dest(paths.dest)
 
-gulp.task 'default', ['article', 'styl', 'coffee']
+gulp.task 'default', ['article', 'styl']
 gulp.task 'watch', ['default'], ->
   gulp.watch paths.jade, ['jade']
   gulp.watch paths.styl, ['styl']
-  gulp.watch paths.coffee, ['coffee']
   conn.server
     root: 'build'
 
