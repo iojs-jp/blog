@@ -4,6 +4,7 @@ conn = require 'gulp-connect'
 deploy = require 'gulp-gh-pages'
 
 exports.paths = paths =
+  assets: 'src/CNAME'
   posts: 'articles/weekly/*.md'
   jade: 'src/*.jade'
   styl: 'src/*.styl'
@@ -11,6 +12,7 @@ exports.paths = paths =
 
 [
   'article'
+  'assets'
 ].forEach (name)-> gulp.task name, require "./gulp/#{name}"
 
 gulp.task 'styl', ->
@@ -18,7 +20,7 @@ gulp.task 'styl', ->
     .pipe styl()
     .pipe gulp.dest(paths.dest)
 
-gulp.task 'default', ['article', 'styl']
+gulp.task 'default', ['assets', 'article', 'styl']
 gulp.task 'watch', ['default'], ->
   gulp.watch paths.jade, ['jade']
   gulp.watch paths.styl, ['styl']
