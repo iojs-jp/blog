@@ -1,8 +1,10 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    title #{title}
-    link(href='/index.css', rel='stylesheet', type='text/css')
-  body
-    article!= body
+extends layout
+
+block head
+  title #{title}
+  link(href='/index.css', rel='stylesheet', type='text/css')
+
+block body
+  a(href='/')
+    img.minilogo(src='/logo.png')
+  article!= body
