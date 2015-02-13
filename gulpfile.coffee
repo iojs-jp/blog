@@ -12,9 +12,10 @@ exports.paths = paths =
   'article'
   'assets'
   'styl'
+  'toppage'
 ].forEach (name)-> gulp.task name, require "./gulp/#{name}"
 
-gulp.task 'default', ['assets', 'article', 'styl']
+gulp.task 'default', ['assets', 'article', 'toppage', 'styl']
 gulp.task 'watch', ['default'], ->
   gulp.watch paths.styl, ['styl']
   conn.server

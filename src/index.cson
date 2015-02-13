@@ -1,0 +1,13 @@
+headline:
+  title: 'title'
+  description: 'desc'
+  url: 'url'
+contents: [
+  title: 'title'
+  description: 'desc'
+  url: 'url'
+,
+  title: 'title'
+  description: 'desc'
+  rul: 'url'
+]
