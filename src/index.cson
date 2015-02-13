@@ -1,9 +1,4 @@
-headline:
-  title: 'io.jsとnode.js Foundation'
-  description: '和解の現状'
-  url: '/io.js_and_node.js_Foundation.html'
+headline: 'io.js_and_node.js_Foundation'
 contents: [
-  title: 'io.jsウィークリーアップデート 2015/2/6'
-  description: 'Atomとnw.jsのio.js移行、Linux Tracing 他'
-  url: '/2015-02-06.html'
+  '2015-02-06'
 ]
