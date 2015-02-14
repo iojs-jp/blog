@@ -11,12 +11,12 @@ block body
   article
     section
       h1 ヘッドライン
-      a(href='#{headline.url}')
+      a(href='/#{headline.id}.html')
         h2 #{headline.title}
       p #{headline.description}
     section
       h1 最近の記事
       each content in contents
-        a(href='#{content.url}')
+        a(href='/#{content.id}.html')
           h2 #{content.title}
         p #{content.description}
