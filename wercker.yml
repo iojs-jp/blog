@@ -1,0 +1,17 @@
+box: wercker/nodejs
+build:
+  steps:
+    - npm-install
+    - script:
+        name: Build
+        code: npm run build
+
+deploy:
+  steps:
+    - script:
+        name: Configure git
+        hide-from-log: true
+        code: git remote set-url origin $github_remote
+    - script:
+        name: Deploy to github pages
+        code: npm run deploy
