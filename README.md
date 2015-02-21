@@ -1,6 +1,8 @@
 http://blog.iojs.jp
 ===================
 
+[![wercker status](https://app.wercker.com/status/6d23b59262d4d133acc9429204d511f8/s/master "wercker status")](https://app.wercker.com/project/bykey/6d23b59262d4d133acc9429204d511f8)
+
 blog.iojs.jp の静的ページジェネレータ
 
 # 更新の手順
@@ -60,9 +62,21 @@ contents: [
 
 これらの更新を含めた Pull Request を作成します。
 
+*TODO*: マージフロー
+
 ## デプロイ
 
-*TODO*
+[Wercker](https://app.wercker.com/project/bykey/6d23b59262d4d133acc9429204d511f8) で `master` ブランチにマージされたものが自動で `gh-pages` にデプロイされます。
+
+### 手動
+
+どうしても手元からデプロイしたい場合には
+
+```
+% npm run deploy
+```
+
+で `build/` 以下が `gh-pages` にデプロイされますが、デプロイミスの原因になるためあまりオススメしません。
 
 # メンバー
 
