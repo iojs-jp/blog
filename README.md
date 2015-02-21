@@ -78,6 +78,29 @@ contents: [
 
 で `build/` 以下が `gh-pages` にデプロイされますが、デプロイミスの原因になるためあまりオススメしません。
 
+# セットアップの手順
+
+```
+% git clone https://github.com/iojs-jp/blog.git
+% cd blog
+% git submodule init
+% git submodule update
+% npm install
+```
+
+## プレビュー
+
+```
+% npm run preview # or % gulp watch
+% gulp watch
+[15:57:43] Requiring external module coffee-script/register
+[15:57:46] Using gulpfile ~/.ghq/src/github.com/e-jigsaw/blog/gulpfile.coffee
+...
+[15:57:46] Server started http://localhost:8080
+```
+
+`http://localhost:8080` にブラウザでアクセスするとプレビューができます。
+
 # メンバー
 
 * Takaya Kobayashi (http://jgs.me, [@e-jigsaw](http://github.com/e-jigsaw))

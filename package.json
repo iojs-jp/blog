@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "update": "git submodule init && git submodule update && git submodule foreach git pull origin master",
     "build": "gulp",
-    "deploy": "gulp deploy"
+    "deploy": "gulp deploy",
+    "preview": "gulp watch"
   },
   "author": "jigsaw (http://jgs.me)",
   "license": "MIT",
