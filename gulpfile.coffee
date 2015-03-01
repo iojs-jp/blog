@@ -3,7 +3,7 @@ conn = require 'gulp-connect'
 deploy = require 'gulp-gh-pages'
 
 exports.paths = paths =
-  assets: ['src/CNAME', 'src/*.png']
+  assets: ['src/CNAME', 'src/*.png', 'src/favicons/*']
   posts: 'articles/weekly/*.md'
   styl: 'src/*.styl'
   dest: 'build/'
