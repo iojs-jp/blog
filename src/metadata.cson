@@ -1,3 +1,8 @@
+'2015-03-06':
+  title: 'io.js ウィークリーアップデート 2015/03/06'
+  description: '1.5.0 リリース, Tessel2 のネイティブサポート, PayPal や Walmart によるサポート 他'
+  pubDate: '2015-03-06'
+
 'reconciliation_proposal':
   title: '和解のプロポーザル'
   description: 'mikeal による io.js と node.js の和解プロポーザルの日本語訳'
