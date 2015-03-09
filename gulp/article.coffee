@@ -1,5 +1,4 @@
 gulp = require 'gulp'
-mark = require 'gulp-markdown'
 jade = require 'gulp-jade-template'
 cson = require 'gulp-cson'
 jadePreprocess = require './helper/jade-preprocess'
