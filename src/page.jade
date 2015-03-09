@@ -3,7 +3,7 @@ extends layout
 block head
   title #{title}
   link(href='/index.css', rel='stylesheet', type='text/css')
-  meta(property='og:title', content='iojs.jp blog')
+  meta(property='og:title', content='#{title}')
   meta(property='og:type', content='article')
   meta(property='og:url', content='http://blog.iojs.jp/#{name}.html')
   meta(property='og:image', content='http://blog.iojs.jp/logo.png')
