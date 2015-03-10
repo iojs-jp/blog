@@ -11,7 +11,7 @@ module.exports = ->
     filenames.forEach (filename)=>
       c =
         name: filename
-        titile: contents[filename].title
+        title: contents[filename].title
         description: contents[filename].description
         pubDate: contents[filename].pubDate
         body: marked fs.readFileSync(path.resolve(file.cwd, "articles/weekly/#{filename}.md")).toString()
