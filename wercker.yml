@@ -1,4 +1,4 @@
-box: wercker/nodejs
+box: andrewbarba/tablelist-io@2.0.0
 build:
   steps:
     - npm-install
