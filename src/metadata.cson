@@ -1,3 +1,8 @@
+'2015-03-20':
+  title: 'io.js ウィークリーアップデート 2015/03/20'
+  description: '1.6 リリース, browserify と express のサポート, SmartOS と FreeBSD 向けビルド 他'
+  pubDate: '2015-03-20'
+
 '2015-03-13':
   title: 'io.js ウィークリーアップデート 2015/03/13'
   description: '1.5.1 リリース, コミュニティの動向, イベントの告知 他'
