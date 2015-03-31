@@ -1,3 +1,8 @@
+'2015-03-27':
+  title: 'io.js ウィークリーアップデート 2015/03/27'
+  description: '1.6.2 リリース, Node.js Technical Governance の提案 他'
+  pubDate: '2015-03-27'
+
 '2015-03-20':
   title: 'io.js ウィークリーアップデート 2015/03/20'
   description: '1.6 リリース, browserify と express のサポート, SmartOS と FreeBSD 向けビルド 他'
