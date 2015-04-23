@@ -1,3 +1,8 @@
+'2015-04-17':
+  title: 'io.js ウィークリーアップデート 2015/04/17'
+  description: 'SealHandleScope API、ARMサポート改善、npmプライベートモジュール'
+  pubDate: '2015-04-17'
+
 '2015-04-10':
   title: 'io.js ウィークリーアップデート 2015/04/10'
   description: '1.6.4 リリース, Android対応, Node Foundationの開発ポリシーの草案 他'
