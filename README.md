@@ -68,16 +68,6 @@ contents: [
 
 [Wercker](https://app.wercker.com/project/bykey/6d23b59262d4d133acc9429204d511f8) で `master` ブランチにマージされたものが自動で `gh-pages` にデプロイされます。
 
-### 手動
-
-どうしても手元からデプロイしたい場合には
-
-```
-% npm run deploy
-```
-
-で `build/` 以下が `gh-pages` にデプロイされますが、デプロイミスの原因になるためあまりオススメしません。
-
 # セットアップの手順
 
 ```
@@ -91,15 +81,10 @@ contents: [
 ## プレビュー
 
 ```
-% npm run preview # or % gulp watch
-% gulp watch
-[15:57:43] Requiring external module coffee-script/register
-[15:57:46] Using gulpfile ~/.ghq/src/github.com/e-jigsaw/blog/gulpfile.coffee
-...
-[15:57:46] Server started http://localhost:8080
+% npm run preview
 ```
 
-`http://localhost:8080` にブラウザでアクセスするとプレビューができます。
+`http://localhost:3000` にブラウザでアクセスするとプレビューができます。
 
 # メンバー
 
