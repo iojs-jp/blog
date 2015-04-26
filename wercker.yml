@@ -1,4 +1,4 @@
-box: andrewbarba/tablelist-io@2.0.0
+box: jgs/nodebrew@0.1.1
 build:
   steps:
     - npm-install
@@ -8,13 +8,7 @@ build:
 
 deploy:
   steps:
-    - script:
-        name: Configure git
-        hide-from-log: true
-        code: |
-          git config --global user.email "wercker@iojs.jp"
-          git config --global user.name "iojs-wercker"
-          git remote set-url origin $github_remote
-    - script:
-        name: Deploy to github pages
-        code: npm run deploy
+    - lukevivier/gh-pages@0.2.1:
+        token: $github_token
+        domain: blog.iojs.jp
+        basedir: build
