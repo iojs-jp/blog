@@ -1,3 +1,8 @@
+'important_security_issue':
+  title: 'Node.js と io.js のCritical Security Issue について'
+  description: '緊急のセキュリティパッチについて'
+  pubDate: '2015-07-03'
+
 '2015-06-26':
   title: 'io.js ウィークリーアップデート 2015/06/26'
   description: '2.3.1リリース, npm 3.0.0 プレリリースなど'
