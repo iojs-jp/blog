@@ -1,3 +1,18 @@
+'2015-07-24':
+  title: 'io.js/Node.js ウィークリーアップデート 2015-07-24'
+  description: 'Node.js LTS、Express における NODE_ENV'
+  pubDate: '2015-07-24'
+
+'2015-07-17':
+  title: 'io.js/Node.js ウィークリーアップデート 2015-07-17'
+  description: 'io.js 2.4.0 のリリース、ApigeeがFoundationに参加、Intl WG が開始'
+  pubDate: '2015-07-17'
+
+'2015-07-10':
+  title: 'io.js/Node.js ウィークリーアップデート 2015-07-10'
+  description: 'io.js 1.8 と 2.3 のセキュリティパッチ、イベント情報'
+  pubDate: '2015-07-10'
+
 '2015-07-03':
   title: 'io.js ウィークリーアップデート 2015/07/03'
   description: 'io.js 1.8 と 2.3 の重要なパッチとイベント'
