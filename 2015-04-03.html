@@ -1,0 +1,95 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.js ウィークリーアップデート 2015/04/03</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.js ウィークリーアップデート 2015/04/03"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-04-03.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="v1.6.3 リリース, RxJS がサポート開始, 和解に向けての動き 他"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><h1>io.js ウィークリーアップデート 2015/04/03</h1>
+<p>v1.6.3 リリース, RxJS がサポート開始, 和解に向けての動き 他</p>
+<!--
+# io.js 1.6.3 release
+-->
+<h2>io.js 1.6.3 リリース</h2>
+<!--
+This week we had one io.js release [v1.6.3](https://iojs.org/dist/v1.6.3/), complete changelog can be found [on GitHub](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md).
+-->
+<p>今週は<a href="https://iojs.org/dist/v1.6.3/">v1.6.3</a>のリリースがありました。 完全なチェンジログは<a href="https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md">GitHub</a>で確認できます。</p>
+<!--
+### Notable changes
+-->
+<h3>主な変更点</h3>
+<h4>1.6.3</h4>
+<!--
+* **fs**: corruption can be caused by `fs.writeFileSync()` and append-mode `fs.writeFile()` and `fs.writeFileSync()` under certain circumstances, reported in [#1058](https://github.com/iojs/io.js/issues/1058), fixed in [#1063](https://github.com/iojs/io.js/pull/1063) (Olov Lassus).
+* **iojs**: an "internal modules" API has been introduced to allow core code to share JavaScript modules internally only without having to expose them as a public API, this feature is for core-only [#848](https://github.com/iojs/io.js/pull/848) (Vladimir Kurchatkin).
+* **timers**: two minor problems with timers have been fixed:
+  - `Timer#close()` is now properly idempotent [#1288](https://github.com/iojs/io.js/issues/1288) (Petka Antonov).
+  - `setTimeout()` will only run the callback once now after an `unref()` during the callback [#1231](https://github.com/iojs/io.js/pull/1231) (Roman Reiss).
+  - NOTE: there are still other unresolved concerns with the timers code, such as [#1152](https://github.com/iojs/io.js/pull/1152).
+* **Windows**: a "delay-load hook" has been added for compiled add-ons on Windows that should alleviate some of the problems that Windows users may be experiencing with add-ons in io.js [#1251](https://github.com/iojs/io.js/pull/1251) (Bert Belder).
+* **V8**: minor bug-fix upgrade for V8 to 4.1.0.27.
+* **npm**: upgrade npm to 2.7.4. See [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v274-2015-03-20) for details.
+-->
+<ul>
+<li><strong>fs</strong>: 一定の環境において<code>fs.writeFileSync()</code>、 append-modeの<code>fs.writeFile()</code>、<code>fs.writeFileSync()</code> によるファイル破損バグ報告が<a href="https://github.com/iojs/io.js/issues/1058">#1058</a>であり、<a href="https://github.com/iojs/io.js/pull/1063">#1063</a> (Olov Lassus)にて修正されました。</li>
+<li><strong>iojs</strong>: JavaScriptモジュールをパブリックAPIにさらすことなくコア内部でシェアできるように &quot;internal modules&quot; API が追加されました。この機能はコアのみで利用できます。<a href="https://github.com/iojs/io.js/pull/848">#848</a> (Vladimir Kurchatkin)</li>
+<li><strong>timers</strong>: タイマーにおけるマイナーバグが2つ修正されました。
+<ul>
+<li><code>Timer.close()</code> が冪等性処理に <a href="https://github.com/iojs/io.js/issues/1288">#1288</a> (Petka Antonov)</li>
+<li><code>setTimeout()</code> で<code>unref()</code>のあとに1度だけcallbackを実行 <a href="https://github.com/iojs/io.js/pull/1231">#1231</a> (Roman Reiss)</li>
+<li>NOTE: タイマー関連のコードには<a href="https://github.com/iojs/io.js/pull/1152">#1152</a>などまだ未解決の問題があります。</li>
+</ul>
+</li>
+<li><strong>Windows</strong>: Windowsにおけるadd-on問題を軽減するために、コンパイルされたadd-on向けの&quot;delay-load hook&quot;が追加されました。<a href="https://github.com/iojs/io.js/pull/1251">#1251</a> (Bert Belder)</li>
+<li><strong>V8</strong>: V8におけるマイナーバグの修正のため<code>4.1.0.27</code>にアップデート。</li>
+<li><strong>npm</strong>: バージョンを<code>2.7.4</code>にアップデート 詳細は<a href="https://github.com/npm/npm/blob/master/CHANGELOG.md#v274-2015-03-20">npm CHANGELOG.md</a>を参照してください。</li>
+</ul>
+<!--
+### Known issues
+-->
+<h3>既知の問題</h3>
+<!-- * Some problems exist with timers and `unref()` still to be resolved. See [#1152](https://github.com/iojs/io.js/pull/1152).
+* Possible small memory leak(s) may still exist but have yet to be properly identified, details at [#1075](https://github.com/iojs/io.js/issues/1075).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894) -->
+<ul>
+<li>タイマーと<code>unref()</code>にはまだ未解決の問題があります。詳細は<a href="https://github.com/iojs/io.js/pull/1152">#1152</a></li>
+<li>TLS 関連のメモリリークが依然として発生することがあります。詳細は <a href="https://github.com/iojs/io.js/issues/1075">#1075</a></li>
+<li>REPL 内のサロゲートペアがターミナルをフリーズさせることが可能です。<a href="https://github.com/iojs/io.js/issues/690">#690</a></li>
+<li>静的ライブラリとして io.js をビルドすることができません。<a href="https://github.com/iojs/io.js/issues/686">#686</a></li>
+<li>child_process から生成された際の <code>process.send()</code> は<a href="https://iojs.org/api/child_process.html#child_process_child_send_message_sendhandle">ドキュメントに記述されている</a>通り、本来は同期的に実行されるはずですが、1.0.2 によって発生した不具合により非同期的に呼び出されてしまうようになりました。詳細は <a href="https://github.com/iojs/io.js/issues/760">#760</a> そして issue <a href="https://github.com/iojs/io.js/issues/774">#774</a> で修正中です。</li>
+<li><code>dns.setServers()</code> を呼び出す間の DNS クエリが進行中にアサーションに失敗してプロセスをクラッシュさせることがあります。<a href="https://github.com/iojs/io.js/issues/894">#894</a></li>
+</ul>
+<!--
+# Community Updates
+-->
+<h2>コミュニティアップデート</h2>
+<!--
+* [Scaleway](https://www.scaleway.com/) provides some ARM resources for the iojs test/build infrastructure.
+* New post on Medium about Node.js reconciliation: [Help us reconcile node.js and io.js](https://medium.com/node-js-javascript/help-us-reconcile-node-js-and-io-js-c060a9ec1bd4)
+* Added support for iojs in [Reactive-Extensions/RxJS](https://travis-ci.org/Reactive-Extensions/RxJS/builds/56671837)
+* [joyent/nodejs-advisory-board#30](https://github.com/joyent/nodejs-advisory-board/pull/30) merged
+* Mikeal Rogers working on reconciling Project Lifecyce and WIG [joyent/nodejs-advisory-board#33](https://github.com/joyent/nodejs-advisory-board/pull/33)
+* Rod Vagg opened the discussion forum about Node.js reconciliation in [iojs/io.js#1336](https://github.com/iojs/io.js/issues/1336)
+-->
+<ul>
+<li><a href="https://www.scaleway.com/">Scaleway</a>が iojs テスト/ビルド環境用にARMリソースを提供。</li>
+<li>Node.js との和解についてのMedium記事: <a href="https://medium.com/node-js-javascript/help-us-reconcile-node-js-and-io-js-c060a9ec1bd4">Help us reconcile node.js and io.js</a></li>
+<li><a href="https://travis-ci.org/Reactive-Extensions/RxJS/builds/56671837">Reactive-Extensions/RxJS</a>にてiojsサポートの追加。</li>
+<li><a href="https://github.com/joyent/nodejs-advisory-board/pull/30">joyent/nodejs-advisory-board#30</a>がマージされました。</li>
+<li>Mikeal Rogersが和解におけるプロジェクトライフサイクルとワーキンググループの扱いについて<a href="https://github.com/joyent/nodejs-advisory-board/pull/33">joyent/nodejs-advisory-board#33</a>を追加しました。</li>
+<li>Rod Vaggが<a href="https://github.com/iojs/io.js/issues/1336">iojs/io.js#1336</a>にて、和解についてのディスカッションを開始しました。</li>
+</ul>
+<!--
+# Upcoming Events
+-->
+<h2>今後開催されるイベント</h2>
+<!--
+* [NodeConf](http://nodeconf.com/) tickets are on sale, June 8th and 9th at Oakland, CA and NodeConf Adventure for June 11th - 14th at Walker Creek Ranch, CA
+* [CascadiaJS](http://2015.cascadiajs.com/) tickets are on sale, July 8th - 10th at Washington State
+* [NodeConf EU](http://nodeconf.eu/) tickets are on sale, September 6th - 9th at Waterford, Ireland
+* [nodeSchool tokyo](http://nodejs.connpass.com/event/13182/) will be held in April 12th at Tokyo, Japan
+-->
+<ul>
+<li><a href="http://nodeconf.com/">NodeConf</a> のチケットが販売中です。6月8-9日にカルフォルニアのオークランドにて開催され、11-14日は NodeConf Adventure がウォーカークリークランチにて開催されます。</li>
+<li><a href="http://2015.cascadiajs.com/">CascadiaJS</a> のチケットも販売中です。7月8-10日にワシントン州にて開催されます。</li>
+<li><a href="http://nodeconf.eu/">NodeConf EU</a> のチケットも販売中です。9月6-9日にアイルランドのウォーターフォードにて開催されます。</li>
+<li><a href="http://nodejs.connpass.com/event/13182/">NodeSchool Tokyo</a> が4月12日に東京で開催されます。</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>

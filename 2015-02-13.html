@@ -1,0 +1,195 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.jsウィークリーアップデート 2015/2/13</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.jsウィークリーアップデート 2015/2/13"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-02-13.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="29言語へのローカリゼーション、バージョン1.2.0リリース 他"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><!--
+io.js Week of February 13th 2015
+29 language localization effort, 1.2.0 release, and much more.
+-->
+<h1>io.jsウィークリーアップデート 2015/2/13</h1>
+<p>29言語へのローカリゼーション、バージョン1.2.0リリース 他</p>
+<hr>
+<!--
+## io.js support added by...
+-->
+<h2>io.jsサポートの追加</h2>
+<ul>
+<li><a href="http://blog.postmarkapp.com/post/110829734198/its-official-were-getting-cozy-with-node-js">Postmark</a></li>
+<li><a href="https://github.com/voodootikigod/node-serialport/issues/439">node-serialport</a></li>
+<li><a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-iojs/">Microsoft Azure</a></li>
+</ul>
+<!--
+## io.js breaks 10,000 stars on GitHub
+-->
+<h2>Githubでio.jsが 10,000 Star を達成</h2>
+<!--
+On Feb. 13, io.js reached the goal of 10,000 stars on GitHub. We couldn't have done it without the support of the amazing community behind JavaScript. Thank you alll!
+-->
+<p>2月13日、JavaScriptコミュニティの素晴らしいサポートのお陰で、io.jsに10,000のGithub Starがつきました。本当にありがとう！</p>
+<!--
+## io.js 1.2.0 released
+-->
+<h2>io.js 1.2.0 リリース</h2>
+<!--
+* **stream**: Simpler stream construction ([readable-stream/issues#102[(https://github.com/iojs/readable-stream/issues/102))
+* **dns**: `lookup()` now supports an `'all'` boolean option, default to `false` but when turned on will cause the method to return an array of all resolved names for an address, see, ([iojs/pull#744](https://github.com/iojs/io.js/pull/744))
+* **assert**: Remove `prototype` property comparison in `deepEqual()` ([iojs/issues#636](https://github.com/iojs/io.js/pull/636)); introduce a `deepStrictEqual()` method to mirror `deepEqual()` but performs strict equality checks on primitives ([iojs/issues#639](https://github.com/iojs/io.js/pull/639)).
+* **tracing**: Add [LTTng](http://lttng.org/) (Linux Trace Toolkit Next Generation) when compiled with the `--with-lttng option`. Trace points match those available for DTrace and ETW. ([iojs/issues#702](https://github.com/iojs/io.js/pull/702))
+* **docs**: Lots of doc updates, see individual commits; new Errors page discussing JavaScript errors, V8 specifics, and io.js specific error details.
+* **npm** upgrade to 2.5.1
+* **libuv** upgrade to 1.4.0, see libuv [ChangeLog](https://github.com/libuv/libuv/blob/v1.x/ChangeLog)
+* Add new collaborators:
+  * Aleksey Smolenchuk (@lxe)
+  * Shigeki Ohtsu (@shigeki)
+-->
+<ul>
+<li><strong>stream</strong>: よりシンプルなstream作成。 (<a href="https://github.com/iojs/readable-stream/issues/102">readable-stream/issues#102</a>)</li>
+<li><strong>dns</strong>: <code>lookup()</code>メソッド で <code>'all'</code> オプションをサポート。この設定を有効にすると名前の解決が行われたすべてのアドレスを配列で返します(デフォルトは<code>false</code>に設定)。 (<a href="https://github.com/iojs/io.js/pull/744">iojs/pull#744</a>)</li>
+<li><strong>assert</strong>: <code>deepEqual()</code>から<code>prototype</code>プロパティの比較を外しました。 (<a href="https://github.com/iojs/io.js/pull/636">iojs/issues#636</a>) <code>deepEqual()</code>のミラーとして<code>deepStrictEqual()</code>メソッドを追加し、こちらがプリミティブの比較を行います。 (<a href="https://github.com/iojs/io.js/pull/639">iojs/issues#639</a>)</li>
+<li><strong>tracing</strong>: <code>--with-lttng option</code> オプションを付けてコンパイルした場合に<a href="http://lttng.org/">LTTng</a> (Linux Trace Toolkit Next Generation) が追加されます。 トレースポイントはDTraceとETWで使用可能なものと同じです。(<a href="https://github.com/iojs/io.js/pull/702">iojs/issues#702</a>)</li>
+<li><strong>docs</strong>: 多くのドキュメントがアップデートされました。新たに JavaScriptエラーについての<a href="https://iojs.org/api/errors.html">Errorsページ</a>を追加、V8の詳細、io.jsに特化したエラーの詳細など（各コミットを参照してください）。</li>
+<li><strong>npm</strong> を 2.5.1にアップグレード</li>
+<li><strong>libuv</strong> を 1.4.0にアップグレード (詳しくはlibuvの<a href="https://github.com/libuv/libuv/blob/v1.x/ChangeLog">変更履歴</a>へ)</li>
+<li>新規コラボレーターの追加:
+<ul>
+<li>Aleksey Smolenchuk (@lxe)</li>
+<li>Shigeki Ohtsu (@shigeki)</li>
+</ul>
+</li>
+</ul>
+<!--
+## Opened our doors to the international community
+-->
+<h2>世界中のコミュニティを受け入れ</h2>
+<!--
+View the [original article](https://medium.com/@mikeal/how-io-js-built-a-146-person-27-language-localization-effort-in-one-day-65e5b1c49a62) on Medium.
+* Added interested contributors to teams for their language.
+* Teams registered Twitter accounts for their teams and other relevant social media accounts.
+* Teams came up with their own ways of working together, and they became more of "community organizers," as opposed to just "translators"
+-->
+<p>Mediumに載せた<a href="https://medium.com/@mikeal/how-io-js-built-a-146-person-27-language-localization-effort-in-one-day-65e5b1c49a62">元記事</a>を参照</p>
+<ul>
+<li>参加したいと言ってくれたメンバーを各言語チームのコントリビューターとして追加</li>
+<li>各チームごとにTwitterや地域に特化したソーシャルメディアアカウントを設置</li>
+<li>各チームが独自にワークフローを設定することで「翻訳者」というよりも「コミュニティオーガナイザー」に</li>
+</ul>
+<!--
+### Stats for Localizations:
+-->
+<h3>ローカリゼーションの状況:</h3>
+<!--
+* 146 people signed up to help with the localizations the first day (over 160 signed up now)
+* 27 languages communities created the first day (already up to 29)
+-->
+<ul>
+<li>呼びかけ初日に146人がローカリゼーションチームに参加 (現在は160人以上)</li>
+<li>初日だけで27言語のローカリゼーションチームが発足(現在は29言語)</li>
+</ul>
+<!--
+### Language Communities
+-->
+<h3>各言語のコミュニティ</h3>
+<ul>
+<li><a href="https://github.com/iojs/iojs-bn"><code>iojs-bn</code></a> ベンガル語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-cn"><code>iojs-cn</code></a> 中国語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-cs"><code>iojs-cs</code></a> チェコ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-da"><code>iojs-da</code></a> デンマーク語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-de"><code>iojs-de</code></a> ドイツ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-el"><code>iojs-el</code></a> ギリシャ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-es"><code>iojs-es</code></a> スペイン語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-fa"><code>iojs-fa</code></a> ペルシャ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-fi"><code>iojs-fi</code></a> フィンランド語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-fr"><code>iojs-fr</code></a> フランス語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-he"><code>iojs-he</code></a> ヘブライ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-hi"><code>iojs-hi</code></a> ヒンディー語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-hu"><code>iojs-hu</code></a> ハンガリー語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-id"><code>iojs-id</code></a> インドネシア語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-it"><code>iojs-it</code></a> イタリア語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-ja"><code>iojs-ja</code></a> 日本語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-ka"><code>iojs-ka</code></a> グルジア語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-kr"><code>iojs-kr</code></a> 韓国語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-mk"><code>iojs-mk</code></a> マケドニア語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-nl"><code>iojs-nl</code></a> オランダ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-no"><code>iojs-no</code></a> ノルウェー語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-pl"><code>iojs-pl</code></a> ポーランド語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-pt"><code>iojs-pt</code></a> ポルトガル語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-ro"><code>iojs-ro</code></a> ルーマニア語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-ru"><code>iojs-ru</code></a> ロシア語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-sv"><code>iojs-sv</code></a> スウェーデン語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-tr"><code>iojs-tr</code></a> トルコ語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-tw"><code>iojs-tw</code></a> 台湾語コミュニティ</li>
+<li><a href="https://github.com/iojs/iojs-uk"><code>iojs-uk</code></a> ウクライナ語コミュニティ</li>
+</ul>
+<!--
+## io.js and Node.js
+-->
+<h2>io.js と Node.js</h2>
+<!--
+View the [original article](https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be) on Medium.
+* Scott Hammond, CEO of Joyent, expressed his desire to bring io.js back to the node.js.
+-->
+<p><a href="http://blog.iojs.jp/io.js_and_node.js_Foundation.html">元記事を参照</a></p>
+<ul>
+<li>Joyent CEOのScott Hammond氏よりio.jsをnode.jsに戻したい意向を受けました</li>
+</ul>
+<!--
+#### In only a few months io.js...
+-->
+<h3>ここ数ヶ月でio.jsは...</h3>
+<!--
+* Has grown to 23 active core team members
+* Has several working groups
+* Has 29 language localization teams,
+* Has drawn more contributors to the project than we’ve ever had in the history of node.js, and
+* Has been able to release quality software at a good pace with the support of an exceptional community.
+-->
+<ul>
+<li>23人のコアチームに成長</li>
+<li>いくつかのワーキンググループを結成</li>
+<li>29言語へのローカリゼーションチームを発足</li>
+<li>node.js史上最多のプロジェクト参加者を惹きつけることに成功</li>
+<li>コミュニティのサポートを受けて、良いペースで質の高いソフトウェアのリリース</li>
+</ul>
+<!--
+> We are eager to put this all behind us but we can’t sacrifice the progress we’ve made or the principles and open governance that got us here.
+-->
+<blockquote>
+<p>分離についてはみんな早く水に流したいと思っていますが、これまでの進捗や、それを推し進めたオープンガバナンスの理念を捨てるわけにはいきません。</p>
+</blockquote>
+<!--
+### The Future
+-->
+<h3>今後について</h3>
+<!--
+* Talks with the node.js foundation are ongoing.
+* Once the foundation has a technical governance model you will see an issue on io.js’ GitHub about whether io.js should join.
+
+  * This will be discussed and voted on openly in a public TC meeting following the governance rules we’ve already built.
+-->
+<ul>
+<li>node.js foundation との話し合いは現在も進行中です</li>
+<li>node.js Foundationがテクニカルガバナンスモデルを作り次第、io.jsのGithub issueにてio.jsがnode.jsに戻るべきかのディスカッションを行います
+<ul>
+<li>私達の作ったガバナンスモデルにもとづいて、公開TCミーティングにてディスカッションとvoteを行います</li>
+</ul>
+</li>
+</ul>
+<!--
+> For the community, nothing has changed.
+-->
+<blockquote>
+<p>コミュニティの皆さんにとって現状は何も変わりません。</p>
+</blockquote>
+<!--
+### What to do right now
+-->
+<h3>今できること</h3>
+<!--
+* Continue to send your pull requests to io.js
+* Join one of the 27 [language localization teams](https://github.com/iojs/website/issues/125)
+* Contribute to io.js’ working groups ([streams](https://github.com/iojs/readable-stream), [website](https://github.com/iojs/website), [evangelism](https://github.com/iojs/website/labels/evangelism), [tracing](https://github.com/iojs/tracing-wg), [build](https://github.com/iojs/build), [roadmap](https://github.com/iojs/roadmap)) and
+* Continue to adopt io.js in your applications.
+-->
+<ul>
+<li>今までどおりpull requestsをio.jsに送る</li>
+<li><a href="https://github.com/iojs/website/issues/125">27言語のローカリゼーションチーム</a>に参加する</li>
+<li>io.jsのワーキンググループに参加する(<a href="https://github.com/iojs/readable-stream">streams</a>, <a href="https://github.com/iojs/website">website</a>, <a href="https://github.com/iojs/website/labels/evangelism">evangelism</a>, <a href="https://github.com/iojs/tracing-wg">tracing</a>, <a href="https://github.com/iojs/build">build</a>, <a href="https://github.com/iojs/roadmap">roadmap</a>)</li>
+<li>io.jsをあなたのアプリケーションで利用する</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>

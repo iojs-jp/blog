@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.js ウィークリーアップデート 2015/04/24</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.js ウィークリーアップデート 2015/04/24"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-04-24.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="io.js 1.8.1 リリース、TC（技術委員会）の新規メンバーの提案、コミュニティアップデート、イベント、他多数"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><h1>io.js ウィークリーアップデート 2015/04/24</h1>
+<p>io.js 1.8.1 リリース、TC（技術委員会）の新規メンバーの提案、コミュニティアップデート、イベント、他多数</p>
+<!--
+# io.js 1.8.1 release
+-->
+<h2>io.js 1.8.1 リリース</h2>
+<!--
+This week we had one io.js release [v1.8.1](https://iojs.org/dist/v1.8.1/), complete changelog can be found [on GitHub](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md).
+-->
+<p>今週は io.js の <a href="https://iojs.org/dist/v1.8.1/">v1.8.1</a> のリリースを行いました。完全なチェンジログは <a href="https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md">GitHub</a> で確認できます。</p>
+<!--
+### Notable changes
+-->
+<h3>主な変更点</h3>
+<!--
+* **NOTICE**: Skipped v1.8.0 due to problems with release tooling.
+  See [#1436](https://github.com/iojs/io.js/issues/1436) for details.
+* **build**: Support for building io.js as a static library (Marat Abdullin) [#1341](https://github.com/iojs/io.js/pull/1341)
+* **deps**: Upgrade openssl to 1.0.2a (Shigeki Ohtsu) [#1389](https://github.com/iojs/io.js/pull/1389)
+  * Users should see performance improvements when using the crypto API.
+  See [here](https://github.com/iojs/io.js/wiki/Crypto-Performance-Notes-for-OpenSSL-1.0.2a-on-iojs-v1.8.0)
+  for details.
+* **npm**: Upgrade npm to 2.8.3. See the [release notes](https://github.com/npm/npm/releases/tag/v2.8.3) for details. Includes improved git support.
+* **src**: Allow multiple arguments to be passed to process.nextTick (Trevor Norris) [#1077](https://github.com/iojs/io.js/pull/1077)
+* **module**: The interaction of `require('.')` with `NODE_PATH` has been restored and deprecated. This functionality
+will be removed at a later point. (Roman Reiss) [#1363](https://github.com/iojs/io.js/pull/1363)
+-->
+<ul>
+<li><strong>注意</strong>: v1.8.0 はリリースツールの問題によってスキップされました。詳細は <a href="https://github.com/iojs/io.js/issues/1436">#1436</a> を参照してください。</li>
+<li><strong>build</strong>: io.js を静的なライブラリとしてビルドするサポート (Marat Abdullin) <a href="https://github.com/iojs/io.js/pull/1341">#1341</a></li>
+<li><strong>deps</strong>: openssl を 1.0.2a にアップグレード (Shigeki Ohtsu) <a href="https://github.com/iojs/io.js/pull/1389">#1389</a>
+<ul>
+<li>crypto API を使用する際にパフォーマンスの改善がみられます。
+<a href="https://github.com/iojs/io.js/wiki/Crypto-Performance-Notes-for-OpenSSL-1.0.2a-on-iojs-v1.8.0">こちら</a> をご覧ください。</li>
+</ul>
+</li>
+<li><strong>npm</strong>: npm を 2.8.3 にアップグレード。詳細については <a href="https://github.com/npm/npm/releases/tag/v2.8.3">release notes</a> をご覧ください。 改善された git のサポートを含みます。</li>
+<li><strong>src</strong>: process.nextTick に複数の引数を渡すことを許可 (Trevor Norris) <a href="https://github.com/iojs/io.js/pull/1077">#1077</a></li>
+<li><strong>module</strong>: <code>require('.')</code> と <code>NODE_PATH</code> の間の相互作用は再構築され、反対されています。この機能性は後に削除されるでしょう。 (Roman Reiss) <a href="https://github.com/iojs/io.js/pull/1363">#1363</a></li>
+</ul>
+<!--
+### Known issues
+-->
+<h3>既知の問題</h3>
+<!--
+* Some problems with unreferenced timers running during `beforeExit` are still to be resolved. See [#1264](https://github.com/iojs/io.js/issues/1264).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/iojs/io.js/issues/1435).
+* readline: split escapes are processed incorrectly, see [#1403](https://github.com/iojs/io.js/issues/1403)
+-->
+<ul>
+<li><code>beforeExit</code> が実行されている最中の非参照のtimersに起因するいくつかの問題は、まだ解決されていません。詳細は <a href="https://github.com/iojs/io.js/issues/1264">#1264</a> を参照して下さい。</li>
+<li>REPL 内のサロゲートペアがターミナルのフリーズを引き起こすことがあります。 <a href="https://github.com/iojs/io.js/issues/690">#690</a></li>
+<li><code>process.send()</code> はドキュメントに記述されている通り、本来は同期的に実行されるはずですが、<code>1.0.2</code> にて発生した不具合により非同期的に呼び出されてしまうようになりました。詳細は <a href="https://github.com/iojs/io.js/issues/760">#760</a> を、修正については <a href="https://github.com/iojs/io.js/issues/774">#774</a> を参照して下さい。</li>
+<li><code>dns.setServers()</code> を呼び出している間の DNS クエリが、進行中にアサーションに失敗してプロセスをクラッシュさせることがあります。<a href="https://github.com/iojs/io.js/issues/894">#894</a></li>
+<li><code>url.resolve</code> は2つの完全なホストを解決しようとした際に url の auth の部分を写す可能性があります。詳細は <a href="https://github.com/iojs/io.js/issues/1435">#1435</a> を参照してください。</li>
+<li>readline: エスケープ処理の分割が正しく動作しません。詳細は <a href="https://github.com/iojs/io.js/issues/1403">#1403</a> を参照してください。</li>
+</ul>
+<!--
+### Community Updates
+-->
+<h2>コミュニティアップデート</h2>
+<!--
+* Fedor Indutny opened discussion about removing TLS `newSession` and `resumeSession` event. [iojs/io.js#1462](https://github.com/iojs/io.js/issues/1462)
+* Proposal to change the C HTTP parser JS HTTP parser [here](https://github.com/iojs/io.js/pull/1457)
+* NPM founder talks about io.js at [InfoWorld](http://www.infoworld.com/article/2910594/node-js/npm-founder-foresees-merger-node-js-io-js.html)
+* Proposal to add mikeal, mscdex, shigeki as new TC members. [iojs/io.js#1483](https://github.com/iojs/io.js/issues/1483#issuecomment-95128140)
+-->
+<ul>
+<li>Fedor Indutny は TLS の <code>newSession</code> と <code>resumeSession</code> イベントを削除することについての議論を開始しました。 <a href="https://github.com/iojs/io.js/issues/1462">iojs/io.js#1462</a></li>
+<li>C HTTP parser を JS HTTP parser に変更する提案は<a href="https://github.com/iojs/io.js/pull/1457">こちら</a>。</li>
+<li>NPM の設立者が io.js について語っています。 <a href="http://www.infoworld.com/article/2910594/node-js/npm-founder-foresees-merger-node-js-io-js.html">InfoWorld</a></li>
+<li>mikeal, mscdex, shigeki をTC(技術委員会)の新しいメンバーに加える提案。 <a href="https://github.com/iojs/io.js/issues/1483#issuecomment-95128140">iojs/io.js#1483</a></li>
+</ul>
+<!--
+### Upcoming Events
+-->
+<h2>今後開催されるイベント</h2>
+<!--
+* [JSConf Uruguay](http://jsconf.uy) tickets are on sale, April 24th & 25th at Montevideo, Uruguay
+* [NodeConf Adventure](http://nodeconf.com/) tickets are on sale, June 11th - 14th at Walker Creek Ranch, CA
+* [CascadiaJS](http://2015.cascadiajs.com/) tickets are on sale, July 8th - 10th at Washington State
+* [NodeConf EU](http://nodeconf.eu/) tickets are on sale, September 6th - 9th at Waterford, Ireland
+-->
+<ul>
+<li><a href="http://jsconf.uy">JSConf Uruguay</a> のチケットが販売中です。4月24-25日にウルグアイのモンテビデオにて開催されます。</li>
+<li><a href="http://nodeconf.com/">NodeConf Adventure</a> が6月11-14日にカリフォルニアのウォーカークリークランチにて開催されます。</li>
+<li><a href="http://2015.cascadiajs.com/">CascadiaJS</a> のチケットが販売中です。7月8-10日にワシントン州にて開催されます。</li>
+<li><a href="http://nodeconf.eu/">NodeConf EU</a> のチケットが販売中です。9月6-9日にアイルランドのウォーターフォードにて開催されます。</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>

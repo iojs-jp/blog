@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.js ウィークリーアップデート 2015/03/06</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.js ウィークリーアップデート 2015/03/06"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-03-06.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="1.5.0 リリース, Tessel2 のネイティブサポート, PayPal や Walmart によるサポート 他"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><h1>io.js ウィークリーアップデート 2015/03/06</h1>
+<p>1.5.0 リリース, Tessel2 のネイティブサポート, PayPal や Walmart によるサポート 他</p>
+<hr>
+<!--
+# io.js 1.5.0 Release
+-->
+<h2>io.js 1.5.0 リリース</h2>
+<!--
+On Friday, March 6th, [@rvagg](https://github.com/rvagg) released io.js [**v1.5.0**](https://iojs.org/dist/latest/).  The complete change log can be found [on GitHub](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md).
+-->
+<p>3月6日に <a href="https://github.com/rvagg">@rvagg</a> は io.js <a href="https://iojs.org/dist/latest/"><strong>v1.5.0</strong></a> をリリースしました。完全なチェンジログは <a href="https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md">GitHub</a> で確認できます。</p>
+<!--
+### Notable changes
+-->
+<h3>主な変更点</h3>
+<!--
+* **buffer**: New `Buffer#indexOf()` method, modelled off [`Array#indexOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf). Accepts a String, Buffer or a Number. Strings are interpreted as UTF8. (Trevor Norris) [#561](https://github.com/iojs/io.js/pull/561)
+* **fs**: `options` object properties in `'fs'` methods no longer perform a `hasOwnProperty()` check, thereby allowing options objects to have prototype properties that apply. (Jonathan Ong) [#635](https://github.com/iojs/io.js/pull/635)
+* **tls**: A likely TLS memory leak was reported by PayPal. Some of the recent changes in **stream_wrap** appear to be to blame. The initial fix is in [#1078](https://github.com/iojs/io.js/pull/1078), you can track the progress toward closing the leak at [#1075](https://github.com/iojs/io.js/issues/1075) (Fedor Indutny).
+* **npm**: Upgrade npm to 2.7.0. See [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v270-2015-02-26) for details including why this is a semver-minor when it could have been semver-major.
+* **TC**: Colin Ihrig (@cjihrig) resigned from the TC due to his desire to do more code and fewer meetings.
+-->
+<ul>
+<li><strong>buffer</strong>: <code>Array#indexOf()</code> からモデル化した <code>Buffer#indexOf()</code> メソッドが追加されました。これは String と Buffer と Number を受け入れます。文字列は UTF8 として解釈されます。(Trevor Norris) <a href="https://github.com/iojs/io.js/pull/561">#561</a></li>
+<li><strong>fs</strong>: <code>'fs'</code> のメソッドの <code>options</code> オブジェクトのプロパティは、<code>hasOwnProperty()</code> によるチェックすることはなくなりました。これにより、 <code>options</code> オブジェクトのプロトタイププロパティが適用されることを可能にしました。(Jonathan Ong) <a href="https://github.com/iojs/io.js/pull/635">#635</a></li>
+<li><strong>tls</strong>: TLS のメモリリークのようなものが PayPal によって報告されました。最近変更された <strong>stream_wrap</strong> にこの原因が見られます。最初の修正は <a href="https://github.com/iojs/io.js/pull/1078">#1078</a> ですが、<a href="https://github.com/iojs/io.js/issues/1075">#1075</a> にて現在も修正中です。(Fedor Indutny)</li>
+<li><strong>npm</strong>: npm のバージョンを 2.7.0 にアップグレードしました。semver-major にされている可能性が semver-minor である理由など、詳細については <a href="https://github.com/npm/npm/blob/master/CHANGELOG.md#v270-2015-02-26">npm CHANGELOG.md</a> を参照してください。</li>
+<li><strong>TC</strong>: Colin Ihrig (@cjihrig) がミーティングを減らし、よりコーディングに時間をあてるため TC を辞任しました。</li>
+</ul>
+<!--
+### Known issues
+-->
+<h3>既知の問題</h3>
+<!--
+* Possible TLS-related memory leak, details at [#1075](https://github.com/iojs/io.js/issues/1075).
+* Windows still reports some minor test failures and we are continuing to address all of these as a priority. See [#1005](https://github.com/iojs/io.js/issues/1005).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
+-->
+<ul>
+<li>TLS に関連するメモリリークがあります。詳細は <a href="https://github.com/iojs/io.js/issues/1075">#1075</a>。</li>
+<li>Windows はまだいくつかのマイナーなテストの失敗が報告されており、我々は優先的にこれら全ての対処を続けています。詳細は <a href="https://github.com/iojs/io.js/issues/1005">#1005</a>。</li>
+<li>REPL 内のサロゲートペアがターミナルをフリーズさせることが可能です。<a href="https://github.com/iojs/io.js/issues/690">#690</a></li>
+<li>静的ライブラリとして io.js をビルドすることができません。<a href="https://github.com/iojs/io.js/issues/686">#686</a></li>
+<li>child_process から生成された際の <code>process.send()</code> は<a href="https://iojs.org/api/child_process.html#child_process_child_send_message_sendhandle">ドキュメントに記述されている</a>通り、本来は同期的に実行されるはずですが、1.0.2 によって発生した不具合により非同期的に呼び出されてしまうようになりました。詳細は <a href="https://github.com/iojs/io.js/issues/760">#760</a> そして issue <a href="https://github.com/iojs/io.js/issues/774">#774</a> で修正中です。</li>
+</ul>
+<!--
+# Community Updates
+-->
+<h2>コミュニティアップデート</h2>
+<!--
+* You can relax knowing that io.js and latest node.js [**are not affected**](https://strongloop.com/strongblog/are-node-and-io-js-affected-by-the-freak-attack-openssl-vulnerability/) by the [FREAK Attack](https://freakattack.com/).  You are running io.js or the latest version of node.js, right?
+-->
+<ul>
+<li>io.js と最新の node.js は <a href="https://freakattack.com/">FREAK Attack脆弱性</a> の<a href="https://strongloop.com/strongblog/are-node-and-io-js-affected-by-the-freak-attack-openssl-vulnerability/"><strong>影響を受けません</strong></a> 。もちろん、 あなたはio.js か最新の node.js を使っていますよね？</li>
+</ul>
+<!--
+* Walmart is now sponsoring a build machine for the io.js Jenkins CI system.  The @iojs/build team is working on creating io.js SunOS binaries (like you can get from nodejs.org).  A V8 fix ([iojs/io.js#1079](https://github.com/iojs/io.js/pull/1079)) needs to be landed first before more progress can be made.
+* We would also like to thank the following companies for contributing hardware and related technology/support/engineering for io.js builds:
+  * **Digital Ocean** (mainly Linux)
+  * **Rackspace** (mainly Windows)
+  * **Voxer** (OS X and FreeBSD)
+  * **NodeSource** (ARMv6 & ARMv7)
+  * **Linaro** (ARMv8)
+  * **Walmart** (SmartOS / Solaris)
+* The io.js community has been hard at work on the internationalization of all of its content.  There are now over 20 active languages published on [iojs.org](http://iojs.org) and i18n community sites.  Additionally, i18n links ([iojs/website#258](https://github.com/iojs/website/pull/258)) have been added to the website footer for easy access.  Are we missing your language?  [Help us add it!](https://github.com/iojs/website/blob/master/TRANSLATION.md)
+* Speaking of translations, the [io.js roadmap presentation](http://roadmap.iojs.org/) has been updated to link to other language versions.
+-->
+<ul>
+<li>Walmart は io.js をビルドする Jenkins(CIシステム) のマシンを提供し始めました。@iojs/build チームは <a href="http://nodejs.org">nodejs.org</a> から取得することができるような  SunOS のバイナリの作成に取り組んでいます。より成果を出すためには V8 の修正(<a href="https://github.com/iojs/io.js/pull/1079">iojs/io.js#1079</a>)が先に取り込まれる必要があります。</li>
+<li>我々は io.js をビルドするためのハードウェア及び関連技術、サポート、エンジニアリングに貢献している以下の企業に感謝したいと思います:
+<ul>
+<li><strong>Digital Ocean</strong> (mainly Linux)</li>
+<li><strong>Rackspace</strong> (mainly Windows)</li>
+<li><strong>Voxer</strong> (OS X and FreeBSD)</li>
+<li><strong>NodeSource</strong> (ARMv6 &amp; ARMv7)</li>
+<li><strong>Linaro</strong> (ARMv8)</li>
+<li><strong>Walmart</strong> (SmartOS / Solaris)</li>
+</ul>
+</li>
+<li>io.js コミュニティはそのコンテンツを全て国際化する仕事に励んできました。<a href="http://iojs.org">iojs.org</a> と i18n のコミュニティサイトには20を超える言語が公開されています。更に、i18n のリンクは (<a href="https://github.com/iojs/website/pull/258">iojs/website#258</a>) でウェブサイトの下部に簡単に追加することができます。あなたの言語が欠落していませんか？<a href="https://github.com/iojs/website/blob/master/TRANSLATION.md">追加の手助けをしてください！</a></li>
+<li>翻訳といえば、<a href="http://roadmap.iojs.org/">io.js ロードマッププレゼンテーション</a>も更新され、他の言語バージョンのリンクを追加しています。</li>
+</ul>
+<!--
+* It seems that **PayPal** is running an experiment comparing [Kappa](https://www.npmjs.com/package/kappa)  on io.js vs node.js 0.12 vs node.js v0.10.  The PayPal team identified a likely TLS memory leak. Initial fix is in [#1078](https://github.com/iojs/io.js/pull/1078) and progress towards closing is in [#1075](https://github.com/iojs/io.js/issues/1075)
+-->
+<ul>
+<li><strong>PayPal</strong> が実験的に <a href="https://www.npmjs.com/package/kappa">Kappa</a> を io.js と node.js v0.12 と node.js v0.10 で比較をしたそうです。PayPal は TLS のメモリリークのようなものを特定しました。最初の修正は <a href="https://github.com/iojs/io.js/pull/1078">#1078</a> ですが、<a href="https://github.com/iojs/io.js/issues/1075">#1075</a> にて現在も修正中です。</li>
+</ul>
+<!--
+* [**NodeSource**](http://nodesource.com) is now providing io.js [Linux binary](https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories) packages for Ubuntu/Debian as well as RHEL/Fedora distributions.
+* The io.js [Docker build](https://registry.hub.docker.com/u/library/iojs/) is one of thirteen new [official Docker repositories](http://blog.docker.com/2015/03/thirteen-new-official-repositories-added-in-january-and-february/) added in January and February.
+-->
+<ul>
+<li><a href="http://nodesource.com"><strong>NodeSource</strong></a> は io.js の <a href="https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories">Linux binary</a> を Ubuntu/Debian や RHEL/Fedora のディストリビューションのパッケージとして提供を開始しました。</li>
+<li>1月と2月に io.js の <a href="https://registry.hub.docker.com/u/library/iojs/">Docker build</a> は13の新しい<a href="http://blog.docker.com/2015/03/thirteen-new-official-repositories-added-in-january-and-february/">公式 Docker リポジトリ</a> に追加されました。</li>
+</ul>
+<!--
+* NodeBots and IoT people should be happy to hear that the just-announced [**Tessel2**](http://blog.technical.io/post/112787427217/tessel-2-new-hardware-for-the-tessel-ecosystem) runs [io.js natively](http://blog.technical.io/post/112888410737/moving-faster-with-io-js).
+* [**@maxbeatty**](https://twitter.com/maxbeatty) is working on a new version of the [jsperf.com](http://jsperf.com/) backend, running on io.js and it is entirely [open source](https://github.com/jsperf/jsperf.com).  Contributions are welcome!
+-->
+<ul>
+<li>NodeBots と IoT に関わる人々は <a href="http://blog.technical.io/post/112787427217/tessel-2-new-hardware-for-the-tessel-ecosystem"><strong>Tessel2</strong></a> が <a href="http://blog.technical.io/post/112888410737/moving-faster-with-io-js">io.js がネイティブになった</a>ことを聞いて幸せでしょう。</li>
+<li><a href="https://twitter.com/maxbeatty"><strong>@maxbeatty</strong></a> は新しいバージョンの <a href="http://jsperf.com/">jsperf.com</a> のバックエンドを開発しています。jsperfのバックエンドは io.js 上で動作します。完全に<a href="https://github.com/jsperf/jsperf.com">オープンソース</a>です。コントリビュート歓迎です！</li>
+</ul>
+<!--
+* [@eranhammer](https://twitter.com/eranhammer) wrote a blog post called [The Node Version Dilemma](http://hueniverse.com/2015/03/02/the-node-version-dilemma/) which discusses the various node.js / io.js versions and proposes which ones to use and when to use them.
+-->
+<ul>
+<li><a href="https://twitter.com/eranhammer">@eranhammer</a> は <a href="http://hueniverse.com/2015/03/02/the-node-version-dilemma/">The Node Version Dilemma</a> というブログ記事を書きました。これは様々な node.js と io.js のバージョンについて議論されており、これらを使うときにどれを使うべきかを提案しています。</li>
+</ul>
+<!--
+# io.js Support Added
+-->
+<h2>io.js のサポートが追加されたもの</h2>
+<!--
+* **[scrypt](https://npmjs.com/scrypt)** now supports io.js. Learn more from this [GitHub issue](https://github.com/barrysteyn/node-scrypt/issues/39)
+* **[proxyquire](https://github.com/thlorenz/proxyquire)** v1.3.2 published with support for iojs.
+-->
+<ul>
+<li><strong><a href="https://npmjs.com/scrypt">scrypt</a></strong> は io.js のサポートをはじめました。詳しくは <a href="https://github.com/barrysteyn/node-scrypt/issues/39">GitHub issue</a> にて。</li>
+<li><strong><a href="https://github.com/thlorenz/proxyquire">proxyquire</a></strong> は v1.3.2 で io.js のサポートを追加しました。</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>

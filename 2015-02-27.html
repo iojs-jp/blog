@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.jsウィークリーアップデート 2015/2/27</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.jsウィークリーアップデート 2015/2/27"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-02-27.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="ARMv8, C++ Streams, 1.4.1リリース, 和解へのプロポーザル　他"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><!-- # io.js Week of February 27th
+ARMv8, C++ Streams, 1.4.1 release, a proposal for reconciliation and more. -->
+<h1>io.jsウィークリーアップデート 2015/2/27</h1>
+<p>ARMv8, C++ Streams, 1.4.1リリース, 和解へのプロポーザル　他</p>
+<hr>
+<!--
+# io.js 1.4.1 Release
+-->
+<h2>io.js 1.4.1リリース</h2>
+<!--
+ _Note: version **1.4.0** was tagged and built but not released. A libuv bug was discovered in the process so the release was aborted. We have jumped to 1.4.1 to avoid confusion._
+ -->
+<p><em>注意: バージョン <strong>1.4.0</strong> はタグ付け・ビルドされましたがリリースはされていません（libuvにバグが発見されたためリリースを中止しました）。混乱を避けるため1.4.1へバージョンを上げています。</em></p>
+<!--
+ ## Notable changes
+-->
+<h3>主な変更点</h3>
+<ul>
+<li><strong>process</strong> / <strong>promises</strong>:  イベントループの中で、<code>Promise</code> が reject され、その <code>Promise</code> に対してのエラーハンドラが一つも存在しない時はいつでも <code>'unhandledRejection'</code> イベントが <code>process</code> オブジェクトに emit されるようになりました。イベントループが回った後で <code>Promise</code> が reject され、あるエラーハンドラがそれをキャッチした時に<code>'rejectionHandled'</code> イベントが emit されるようになりました。  <a href="https://github.com/iojs/io.js/pull/758">#758</a> (Petka Antonov)</li>
+<li><strong>streams</strong>: <code>tls.connect()</code> に対してのローレベルなソケットとして標準の Streams を使うことが出来るようになりました <a href="https://github.com/iojs/io.js/pull/926">#926</a> (Fedor Indutny)</li>
+<li><strong>http</strong>: <code>http.ClientRequest</code>がクライアントによって abort された時、新しい <code>'abort'</code> イベントが emit されます。 <a href="https://github.com/iojs/io.js/pull/945">#945</a> (Evan Lucas)</li>
+<li><strong>V8</strong>: V8 を4.1.0.21に アップグレードしました。 これには差止された修正が含まれます。差止された情報が開示されたときに詳細を得られるべきです。io.js が V8 4.2 にマージした時に、恐らくこの修正が含まれることになるでしょう、このアップグレード (v4.2) から ABI の互換性を壊す変更が発生することになります。 詳細は このディスカッションを見てください。 <a href="https://github.com/iojs/io.js/pull/952">#952</a></li>
+<li><strong>npm</strong>: npm を 2.6.0 に アップグレードしました。新しいレジストリのサポートや<code>npm@3</code>への準備のための機能を含みます。詳細は<a href="https://github.com/npm/npm/blob/master/CHANGELOG.md#v260-2015-02-12">npm CHANGELOG.md</a>を見てください。 サマリ：
+<ul>
+<li><a href="https://github.com/npm/npm/issues/5068">#5068</a> 新しくログアウトコマンドを追加しました。 bearer-based と basic-based の両方で認証されたクライアントの上で便利になるでしょう。</li>
+<li><a href="https://github.com/npm/npm/issues/6565">#6565</a> <code>peerDependency</code> の振る舞いが変更中であり、ドキュメントに注意を追加している事が警告されています。</li>
+<li><a href="https://github.com/npm/npm/issues/7171">#7171</a> npm の次のメジャーバージョン (coming soon!) の中で <code>package.json</code> の <code>engineStrict</code> が削除される予定だと警告されています。</li>
+</ul>
+</li>
+<li><strong>libuv</strong>: libuvを1.4.2 にアップグレードしました。 詳細は <a href="https://github.com/libuv/libuv/blob/v1.x/ChangeLog">libuv ChangeLog</a> を見てください。</li>
+</ul>
+<!--
+# ARM offers support for io.js on ARMv8
+-->
+<h2>ARMから、ARMv8でのio.jsサポートの意向</h2>
+<!--
+ARM contacted Rod Vagg, lead of the io.js Build Working Group, to offer their support to the io.js project. ARM and their hardware partners are on track to make ARMv8 a viable server platform and the nimble nature of server-side JavaScript make it a perfect fit to run on the new ARM.
+-->
+<p>ARM からRod Vagg(Buildワーキング・グループリード)へio.jsをサポートしたい旨、連絡がありました。ARMと彼らのハードウェアパートナーはARMv8を実用的なサーバーとして仕上げる予定で、実行速度の早いサーバーサイドJavaScriptはARM上で動かすのに最適です。</p>
+<!--
+ Since ARMv8 is already being adopted by mobile device manufacturers, newer versions of V8 already have good support. Because of V8's pivotal role in Android, io.js is perfectly suited to track that support, and even contribute to it given our new relationships with the V8 team.
+ -->
+<p>ARMv8はすでにモバイル製造において採用されているため、新しいバージョンのV8サポートがあります。特にV8はAndroidにおいて重要な役割を果たしているため、io.jsがこの流れに沿うのは最適です。また最近のV8チームとのコラボレーションにより、io.jsからもARMに貢献できるでしょう。</p>
+<!--
+ From the beginning of the io.js project, Rod has championed the role of ARM for io.js, for IoT, hobbyist, and server use. We already have ARMv6 builds of each release for devices such as Raspberry Pi. and ARMv7 builds for many more popular devices (including the Online Labs ARM-based cloud platform, who have also offered help to io.js). ARMv8 is the logical extension of this, but also has exciting potential for server-side applications, particularly given the new 64-bit support.
+ -->
+<p>io.jsの開始当初から、Rodは IoT, ホビー用途, またサーバーとしてのARMの役割について大きな期待と支持をしてきました。すでに各リリースにおいてARMv6ビルド（Raspberry Piなど）とARMv7ビルド（多くの人気デバイス、例えばio.jsのサポートを表明しているOnline Labsのクラウドプラットフォームなど）を用意しています。ARMv8の追加は自然な流れですが、特に64-bitのサポートはサーバーサイドアプリケーションの可能性が広がります。</p>
+<!--
+The build team is in the process of being given access to the Linaro ARMv8 Server Cluster for integration with the io.js CI platform, which should eventually lead to regular ARMv8 binary releases.
+-->
+<p>Buildチームでは、io.jsのCIプラットフォームとの連携用にLinaro ARMv8 Server Clusterへのアクセスを得る予定で、これにより毎リリースでARMv8のバイナリ配布が可能になります。</p>
+<!--
+## Community Updates
+-->
+<h2>コミュニティの動き</h2>
+<!--
+* [**Reconciliation Proposal**](https://github.com/iojs/io.js/issues/978): The io.js project is preparing a plan for reconciliation that can be brought to The Node.js Foundation. Input from the community is very important at this early stage so please leave a comment.
+* **New internal C++ Streams API**: A [fresh C++ Streams API](https://github.com/iojs/io.js/commit/b9686233fc0be679d7ba1262b611711629ee334e) landed in io.js this week, allowing you to wrap a TLS stream into another TLS stream.
+* **io.js Roadmap**: [The Roadmap](https://github.com/iojs/io.js/blob/v1.x/ROADMAP.md) is the plan for the future of io.js. It presents the plans for the stability policy, and lists what the immediate priorities for io.js as a whole are.
+* **Roadmap Slides Finished and Ready for Translation**: The set of introductory slides for the Roadmap of io.js [have been finished, and are ready for translation](https://github.com/iojs/roadmap/issues/18). Do you think you could present them to a group near you? Comment and we'll work with you to prepare you to present!
+* **Microsoft io.js How-To for Azure Websites**: Microsoft [published a how-to](http://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-iojs/) tutorial for their Azure platform that describes how to use io.js with Azure Websites.
+* **Floobits moves to io.js**: The code pairing software Floobits [converted their platform to io.js](https://news.floobits.com/2015/02/23/on-moving-to-io.js/), in part because of frustration with Node's slower release cycle, because the inclusion of more ES6 features without the need for the `--harmony` flag, and because they felt changes from 0.10.0 to 0.12.0 weren't very big.
+* **Anand Mani Sankar's _Node.js vs io.js: Why the fork?!?_**: Anand wrote a good, for the most part objective, [post about the recent history of io.js](http://anandmanisankar.com/posts/nodejs-iojs-why-the-fork/#.VO82hE60PVw.twitter), and what we hope to achieve with it. A good read for people who aren't engaged in the community to catch up with.
+* **iojs-jp - New io.js Japanese Blog**: The iojs-jp community has created a [localized io.js related blog](http://blog.iojs.jp/) to disseminate content in their language. If you're interested, take a look!
+* **iojs-cn - New io.js Chinese Blog**: Similarly to the iojs-jp community, the iojs-cn community created a [localized blog](http://cn.iojs.org/) to publish posts about io.js to in their language. Make sure to visit if you're curious about iojs-cn or Chinese news about io.js!
+* **[Roadmap Slides Review](https://www.youtube.com/watch?v=etI_UD4wXlo)** - A review of the roadmap slides before they were released to ensure they met with the message the project upholds.
+-->
+<ul>
+<li><a href="https://github.com/iojs/io.js/issues/978"><strong>和解プロポーザル</strong></a>: io.js プロジェクトではNode.js Foundationとの話し合いに向けて和解プランを立て始めました。初期段階でのコミュニティ意見参加はとても重要です、ぜひコメントを。</li>
+<li><strong>新 C++ Streams 内部API</strong>: 全く新しい <a href="https://github.com/iojs/io.js/commit/b9686233fc0be679d7ba1262b611711629ee334e">C++ Streams API</a>が今週io.jsに追加され、TLS streamを他のTLS streamで包むことができるようになりました。</li>
+<li><strong>io.js ロードマップ</strong>: 主に安定性ポリシーと直近の優先項目についての<a href="https://github.com/iojs/io.js/blob/v1.x/ROADMAP.md">将来プラン</a></li>
+<li><strong>ロードマップのスライド完成 (翻訳用に準備完了）</strong>: io.jsのロードマップについての紹介スライドが<a href="https://github.com/iojs/roadmap/issues/18">完成し翻訳用に準備完了</a>しました。ぜひローカルイベントで発表しませんか？ コメントしてくれたらプレゼン準備をお手伝いします!</li>
+<li><strong>MicrosoftによるAzure Websitesでのio.js解説</strong>: Azure Websites上でのio.jsの<a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-iojs/">使い方ハウツー記事</a>.</li>
+<li><strong>Floobitsがio.jsへ移行</strong>: ペアプログラミングソフトのFloobitsがNodeの遅いリリースサイクル、io.jsで<code>--harmony</code>フラグ無しでのES6利用、また(node.jsの)0.10.0と0.12.0で大きな変更点がなかった事から<a href="https://news.floobits.com/2015/02/23/on-moving-to-io.js/">彼らのプラットフォームをio.jsへ移行</a></li>
+<li><strong>Anand Mani Sankarによる <em>Node.js vs io.js: Why the fork?!?</em></strong>: Anand による（ほぼ）客観的に書かれたio.jsの歴史とゴールついての<a href="http://anandmanisankar.com/posts/nodejs-iojs-why-the-fork/#.VO82hE60PVw.twitter">記事</a>。 今までコミュニティ流れを追ってこなかった人にオススメ。</li>
+<li><strong>iojs-jp - io.js日本語ブログ</strong>: 日本語コミュニティが<a href="http://blog.iojs.jp/">io.jsについての日本語ブログ</a>を作成。興味がある場合はぜひチェックを!</li>
+<li><strong>iojs-cn - io.js中国語ブログ</strong>: 日本語コミュニティと同じく、中国語コミュニティも<a href="http://cn.iojs.org/">現地ブログ</a>でio.jsの情報発信を開始。中国語でのio.jsニュースに興味がある場合はぜひチェックを!</li>
+<li><strong><a href="https://www.youtube.com/watch?v=etI_UD4wXlo">ロードマップスライドのレビュー</a></strong> - スライドリリース前に行われたプロジェクトに沿ったメッセージになっているかの確認ミーティング</li>
+</ul>
+<!--
+# io.js Support Added
+-->
+<h2>io.jsサポートの追加</h2>
+<!--
+* **[Wallby.js](http://wallabyjs.com/)**, a while-you-write testing library for JavaScript, hit version 1.0 and [added support for io.js](http://dm.gl/2015/02/23/wallaby-version-one/)!
+* **[jsdom](https://github.com/tmpvar/jsdom)**, an implementation of the WHATWG DOM and HTML standards, just hit [version 4.0.0](https://github.com/tmpvar/jsdom/blob/master/Changelog.md#400), which added a _requirement_ of io.js.
+* **[give](https://github.com/mmalecki/give)**'s creator [tweeted](https://twitter.com/maciejmalecki/status/569629100215816192) that newer versions of give support io.js. Give is a git-based node.js/io.js version manager.
+* The **Firebase Realtime Client**, the official web/node.js JavaScript client for Firebase, [tweeted](https://twitter.com/FirebaseRelease/status/570000737343647744) that they added support for io.js in [version 2.2.1](https://www.firebase.com/docs/web/changelog.html#section-realtime-client)
+* **Semaphore**, a hosted continuous integrations service, [tweeted](https://twitter.com/semaphoreapp/status/570987355005431809) about added io.js support in their [Platform update on February 24th, 2015](https://semaphoreapp.com/blog/2015/02/17/platform-update-on-february-24th.html?utm_source=twitter&utm_medium=social&utm_content=platform_update_launch&utm_campaign=platformupdate).
+-->
+<ul>
+<li><strong><a href="http://wallabyjs.com/">Wallby.js</a></strong>　(javascrip用テストライブラリ)が バージョン1.0 で<a href="http://dm.gl/2015/02/23/wallaby-version-one/">io.jsをサポート</a>!</li>
+<li><strong><a href="https://github.com/tmpvar/jsdom">jsdom</a></strong>　(DOMシュミレーションパッケージ) が<a href="https://github.com/tmpvar/jsdom/blob/master/Changelog.md#400">新バージョン 4.0.0</a>でio.js_のみ_をサポート。</li>
+<li>**<a href="https://github.com/mmalecki/give">give</a>**の作者が新バージョンのgiveではio.jsをサポートと<a href="https://twitter.com/maciejmalecki/status/569629100215816192">ツイート</a> (giveはgitベースの node.js/io.js バージョンマネージャー)</li>
+<li><strong>Firebase Realtime Client</strong> (Firebaseオフィシャルのweb/node.js JavaScript クライアント)の<a href="https://twitter.com/FirebaseRelease/status/570000737343647744">ツイート</a>によるとio.jsのサポートを<a href="https://www.firebase.com/docs/web/changelog.html#section-realtime-client">バージョン 2.2.1</a>で追加</li>
+<li><strong>Semaphore</strong>（CIサービス）の<a href="https://twitter.com/semaphoreapp/status/570987355005431809">ツイート</a>によると<a href="https://semaphoreapp.com/blog/2015/02/17/platform-update-on-february-24th.html?utm_source=twitter&amp;utm_medium=social&amp;utm_content=platform_update_launch&amp;utm_campaign=platformupdate">2月24日のプラットフォームアップデート</a>でio.jsのサポートを追加</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>

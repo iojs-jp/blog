@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.js ウィークリーアップデート 2015/06/12</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.js ウィークリーアップデート 2015/06/12"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-06-12.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="OpenSSLの更新、use_strongのサポート、Node Foundationへとマージ 他"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><h1>io.js ウィークリーアップデート 2015/06/12</h1>
+<p>OpenSSLの更新、use_strongのサポート、Node Foundationへとマージ 他</p>
+<hr>
+<!--
+# io.js 2.3 releases
+-->
+<h2>io.js 2.3 リリース</h2>
+<!--
+This week we had one io.js release [v2.3.0](https://iojs.org/dist/v2.3.0/), complete changelog can be found [on GitHub](https://github.com/nodejs/io.js/blob/master/CHANGELOG.md).
+-->
+<p>今週は<a href="https://iojs.org/dist/v2.3.0/">v2.3.0</a>をリリースしました。詳細は<a href="https://github.com/nodejs/io.js/blob/master/CHANGELOG.md">GitHubにて</a>確認いただけます。</p>
+<!--
+### Notable changes
+-->
+<h3>主な変更点</h3>
+<!--
+* **libuv**: Upgraded to 1.6.0 and 1.6.1, see [full ChangeLog](https://github.com/libuv/libuv/blob/60e515d9e6f3d86c0eedad583805201f32ea3aed/ChangeLog#L1-L36) for details. (Saúl Ibarra Corretgé) [#1905](https://github.com/nodejs/io.js/pull/1905) [#1889](https://github.com/nodejs/io.js/pull/1889). Highlights include:
+  - Fix TTY becoming blocked on OS X
+  - Fix UDP send callbacks to not to be synchronous
+  - Add `uv_os_homedir()` (exposed as `os.homedir()`, see below)
+* **npm**: See full [release notes](https://github.com/npm/npm/releases/tag/v2.11.1) for details. (Kat Marchán) [#1899](https://github.com/nodejs/io.js/pull/1899). Highlight:
+  - Use GIT_SSH_COMMAND (available as of Git 2.3)
+* **openssl**:
+  - Upgrade to 1.0.2b and 1.0.2c, introduces DHE man-in-the-middle protection (Logjam) and fixes malformed ECParameters causing infinite loop (CVE-2015-1788). See the [security advisory](https://www.openssl.org/news/secadv_20150611.txt) for full details. (Shigeki Ohtsu) [#1950](https://github.com/nodejs/io.js/pull/1950) [#1958](https://github.com/nodejs/io.js/pull/1958)
+  - Support [FIPS](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) mode of OpenSSL, see [README](https://github.com/nodejs/io.js#building-iojs-with-fips-compliant-openssl) for instructions. (Fedor Indutny) [#1890](https://github.com/nodejs/io.js/pull/1890)
+* **os**: Add `os.homedir()` method. (Colin Ihrig) [#1791](https://github.com/nodejs/io.js/pull/1791)
+* **smalloc**: Deprecate whole module. (Vladimir Kurchatkin) [#1822](https://github.com/nodejs/io.js/pull/1822)
+* Add new collaborators:
+  - Alex Kocharin ([@rlidwka](https://github.com/rlidwka))
+  - Christopher Monsanto ([@monsanto](https://github.com/monsanto))
+  - Ali Ijaz Sheikh ([@ofrobots](https://github.com/ofrobots))
+  - Oleg Elifantiev ([@Olegas](https://github.com/Olegas))
+  - Domenic Denicola ([@domenic](https://github.com/domenic))
+  - Rich Trott ([@Trott](https://github.com/Trott))
+-->
+<ul>
+<li><strong>libuv</strong>: 1.6.0と1.6.1へのアップデートを行いました。詳細は、こちらの<a href="https://github.com/libuv/libuv/blob/60e515d9e6f3d86c0eedad583805201f32ea3aed/ChangeLog#L1-L36">完全なチェンジログ</a>をご覧ください。(Saúl Ibarra Corretgé) <a href="https://github.com/nodejs/io.js/pull/1905">#1905</a> <a href="https://github.com/nodejs/io.js/pull/1889">#1889</a>。詳細のハイライト:
+<ul>
+<li>OS XでTTYがブロックされる問題を修正</li>
+<li>同期せずに UDP send のコールバックを呼び出すように修正</li>
+<li><code>uv_os_homedir()</code> を追加 (<code>os.homedir()</code>として公開されているので、ドキュメントを参照してみてください)</li>
+</ul>
+</li>
+<li><strong>npm</strong>: 詳細は<a href="https://github.com/npm/npm/releases/tag/v2.11.1">リリースノート</a>を参照してください。(Kat Marchán) <a href="https://github.com/nodejs/io.js/pull/1899">#1899</a>。ハイライト:
+<ul>
+<li>GIT_SSH_COMMANDを使うようになりました(Git 2.3で使用可能に)</li>
+</ul>
+</li>
+<li><strong>openssl</strong>:
+<ul>
+<li>1.0.2bと1.0.2cへのアップデートを行いました。(Logjamを悪用した)DHEの中間者攻撃からの保護と、無限ループを引き起こす不正な形式のECParametersの修正 (CVE-2015-1788) が含まれています。詳細は、<a href="https://www.openssl.org/news/secadv_20150611.txt">セキュリティ指南</a>をご確認ください。(Shigeki Ohtsu) <a href="https://github.com/nodejs/io.js/pull/1950">#1950</a> <a href="https://github.com/nodejs/io.js/pull/1958">#1958</a></li>
+<li>OpenSSLの <a href="https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards">FIPS</a> モードをサポート。 使い方に関する詳細は、<a href="https://github.com/nodejs/io.js#building-iojs-with-fips-compliant-openssl">README</a> をご確認ください。(Fedor Indutny) <a href="https://github.com/nodejs/io.js/pull/1890">#1890</a></li>
+</ul>
+</li>
+<li><strong>os</strong>: <code>os.homedir()</code> メソッドを追加。(Colin Ihrig) <a href="https://github.com/nodejs/io.js/pull/1791">#1791</a></li>
+<li><strong>smalloc</strong>: モジュールの使用を非推奨としました。(Vladimir Kurchatkin) <a href="https://github.com/nodejs/io.js/pull/1822">#1822</a></li>
+<li>新しいコラボレーターを受け入れ：
+<ul>
+<li>Alex Kocharin (<a href="https://github.com/rlidwka">@rlidwka</a>)</li>
+<li>Christopher Monsanto (<a href="https://github.com/monsanto">@monsanto</a>)</li>
+<li>Ali Ijaz Sheikh (<a href="https://github.com/ofrobots">@ofrobots</a>)</li>
+<li>Oleg Elifantiev (<a href="https://github.com/Olegas">@Olegas</a>)</li>
+<li>Domenic Denicola (<a href="https://github.com/domenic">@domenic</a>)</li>
+<li>Rich Trott (<a href="https://github.com/Trott">@Trott</a>)</li>
+</ul>
+</li>
+</ul>
+<!--
+### Known issues
+-->
+<h3>既知の問題</h3>
+<!--
+See https://github.com/nodejs/io.js/labels/confirmed-bug for complete and current list of known issues.
+-->
+<p>現在の完全な既知の問題リストは <a href="https://github.com/nodejs/io.js/labels/confirmed-bug">https://github.com/nodejs/io.js/labels/confirmed-bug</a> を参照してください。</p>
+<!--
+* Some problems with unreferenced timers running during `beforeExit` are still to be resolved. See [#1264](https://github.com/nodejs/io.js/issues/1264).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/nodejs/io.js/issues/690)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/nodejs/io.js/issues/760) and fix in [#774](https://github.com/nodejs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/nodejs/io.js/issues/894)
+* `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/nodejs/io.js/issues/1435).
+-->
+<ul>
+<li><code>beforeExit</code> が実行されている最中の非参照のtimersに起因するいくつかの問題は、まだ解決されていません。詳細は <a href="https://github.com/nodejs/io.js/issues/1264">#1264</a> を参照して下さい。</li>
+<li>REPL 内のサロゲートペアがターミナルのフリーズを引き起こすことがあります。 <a href="https://github.com/nodejs/io.js/issues/690">#690</a></li>
+<li><code>process.send()</code> はドキュメントに記述されている通り、本来は同期的に実行されるはずですが、<code>1.0.2</code> にて発生した不具合により非同期的に呼び出されてしまうようになりました。詳細は <a href="https://github.com/nodejs/io.js/issues/760">#760</a> を、修正については <a href="https://github.com/nodejs/io.js/issues/774">#774</a> を参照して下さい。</li>
+<li><code>dns.setServers()</code> を呼び出している間の DNS クエリが、進行中にアサーションに失敗してプロセスをクラッシュさせることがあります。<a href="https://github.com/nodejs/io.js/issues/894">#894</a></li>
+<li><code>url.resolve</code> は2つの完全なホストを解決しようとした際に url の auth の部分を移動する可能性があります。詳細は <a href="https://github.com/nodejs/io.js/issues/1435">#1435</a> を参照してください。</li>
+</ul>
+<!--
+### Community Updates
+-->
+<h2>コミュニティより</h2>
+<!--
+* Openssl vulnerabilities are updated on io.js. **Resume:** *Upgrade to 1.0.2b and 1.0.2c, introduces DHE man-in-the-middle protection (Logjam) and fixes malformed ECParameters causing infinite loop (CVE-2015-1788). See the security advisory for full details. (Shigeki Ohtsu) #1950 #1958*
+* io.js 2.3.0 os.homedir() [ponyfill](http://t.co/2XQV5XQblu)
+* ["Should I use Node.js or io.js? And which version?"](https://strongloop.com/strongblog/should-i-use-node-js-or-io-js-and-which-version/) article by StrongLoop
+* iojs now supports [`--use_strong`](https://t.co/4t1EaiiK27). Strong mode (part of Google v8 experiments) implements a stronger semantics.
+* ["Node.js and io.js Merge Under the Node Foundation"](http://www.infoq.com/news/2015/05/nodejs-iojs#.VX41fCR99Kc.twitter) by InfoQ.
+-->
+<ul>
+<li>io.jsに同梱されていたOpsnSSLの脆弱性は更新されました。
+<strong>概要:</strong> * 1.0.2bと1.0.2cへのアップデートでは、(Logjamを悪用した)DHEの中間者攻撃からの保護と、無限ループを引き起こす不正な形式のECParametersの修正 (CVE-2015-1788) が行われました。詳細なセキュリティについての情報は、(Shigeki Ohtsu) #1950 #1958 を確認してください。*</li>
+<li>io.js 2.3.0 の os.homedir() の <a href="http://t.co/2XQV5XQblu">ponyfill</a> について。</li>
+<li><a href="https://strongloop.com/strongblog/should-i-use-node-js-or-io-js-and-which-version/">&quot;Node.js と io.js のどちらを使うべきか、そしてバージョンはいくつを使うべきか&quot;</a> by StrongLoop</li>
+<li>iojsは、<a href="https://t.co/4t1EaiiK27"><code>--use_strong</code></a> オプションをサポートしました。ストロングモード(Google V8の実験的機能)は、強いセマンティクスのチェックを行います。</li>
+<li><a href="http://www.infoq.com/news/2015/05/nodejs-iojs#.VX41fCR99Kc.twitter">&quot;Node.js と io.js は、Node Foundationへとマージされる&quot;</a> by InfoQ</li>
+</ul>
+<!--
+### Upcoming Events
+-->
+<h2>今後開催されるイベント</h2>
+<!--
+* [CascadiaJS](http://2015.cascadiajs.com/) tickets are on sale, July 8th - 10th at Washington State
+* [BrazilJS Conf](http://braziljs.com.br/) tickets are on sale, August 21st - 22nd at Shopping Center BarraShoppingSul
+* [NodeConf EU](http://nodeconf.eu/) tickets are on sale, September 6th - 9th at Waterford, Ireland
+* [JSConf CO](http://www.jsconf.co/), October 16th - 17th at Ruta N, Medellin
+-->
+<ul>
+<li><a href="http://2015.cascadiajs.com/">CascadiaJS</a> のチケットが販売中です。7月8-10日にワシントン州にて開催されます。</li>
+<li><a href="http://braziljs.com.br/">BrazilJS Conf</a> のチケットが販売中です。8月21-22日にリオ・グランデ・ド・スール州のBarra Shopping Sulで開催されます。</li>
+<li><a href="http://nodeconf.eu/">NodeConf EU</a> のチケットが販売中です。9月6-9日にアイルランドのウォーターフォードにて開催されます。</li>
+<li><a href="http://www.jsconf.co/">JSConf CO</a>が10月16-17日にメデジンのル・タンにて開催されます。</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>

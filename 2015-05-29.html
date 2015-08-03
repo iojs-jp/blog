@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#f2df43"><meta name="msapplication-TileImage" content="/mstile-144x144.png"><meta name="theme-color" content="#ffffff"><title>io.js ウィークリーアップデート 2015/05/29</title><link href="/index.css" rel="stylesheet" type="text/css"><meta property="og:title" content="io.js ウィークリーアップデート 2015/05/29"><meta property="og:type" content="article"><meta property="og:url" content="http://blog.iojs.jp/2015-05-29.html"><meta property="og:image" content="http://blog.iojs.jp/logo.png"><meta property="og:description" content="Node TSC 初ミーティング, 2.2リリース, io.js と node.js の関係性の記事 他"><meta property="og:locale" content="ja_JP"></head><body><a href="/"><img src="/logo.png" class="minilogo"></a><article><h1>io.js ウィークリーアップデート 2015/05/29</h1>
+<p>Node TSC 初ミーティング, 2.2リリース, io.js と node.js の関係性の記事 他</p>
+<hr>
+<!--
+# io.js 2.2 releases
+-->
+<h2>io.js 2.2 リリース</h2>
+<!--
+This week we had two io.js releases [v2.2.0](https://iojs.org/dist/v2.2.0/) and [v2.2.1](https://iojs.org/dist/v2.2.1/), complete changelog can be found [on GitHub](https://github.com/nodejs/io.js/blob/master/CHANGELOG.md).
+-->
+<p>今週は <a href="https://iojs.org/dist/v2.2.0/">v2.2.0</a> と <a href="https://iojs.org/dist/v2.2.1/">v2.2.1</a> の2回 io.js のリリースをしました。完全なチェンジログは <a href="https://github.com/nodejs/io.js/blob/master/CHANGELOG.md">GitHub</a> で見れます。</p>
+<!--
+### Notable changes
+-->
+<h3>主な変更点</h3>
+<!--
+#### v2.2.0
+-->
+<h4>v2.2.0</h4>
+<!--
+* **node**: Speed-up `require()` by replacing usage of `fs.statSync()` and `fs.readFileSync()` with internal variants that are faster for this use-case and do not create as many objects for the garbage collector to clean up. The primary two benefits are: significant increase in application start-up time on typical applications and better start-up time for the debugger by eliminating almost all of the thousands of exception events. (Ben Noordhuis) [#1801](https://github.com/nodejs/io.js/pull/1801).
+* **node**: Resolution of pre-load modules (`-r` or `--require`) now follows the standard `require()` rules rather than just resolving paths, so you can now pre-load modules in node_modules. (Ali Ijaz Sheikh) [#1812](https://github.com/nodejs/io.js/pull/1812).
+* **npm**: Upgraded npm to v2.11.0. New hooks for `preversion`, `version`, and `postversion` lifecycle events, some SPDX-related license changes and license file inclusions. See the [release notes](https://github.com/npm/npm/releases/tag/v2.11.0) for full details.
+-->
+<ul>
+<li><strong>node</strong>: <code>fs.statSync()</code> と <code>fs.readFileSync()</code> を使用していた箇所をこのユースケースのために改善された内部変数に置換しました。この変更によって多数のオブジェクトを作らずに済むため、 GC の作業が減らされ、 <code>require()</code> が高速化されます。主な2つのメリットはアプリケーションの起動時間の改善と数千もの例外イベントが削除されることにより、デバッガーの起動時間が改善されます。(Ben Noordhuis) <a href="https://github.com/nodejs/io.js/pull/1801">#1801</a></li>
+<li><strong>node</strong>: プリロードモジュール(<code>-r</code> または <code>--require</code>)は標準の <code>require()</code> のパス解決ルールに従って解決されるので、<code>node_modules</code> からプリロードできるようになりました。 (Ali Ijaz Sheikh) <a href="https://github.com/nodejs/io.js/pull/1812">#1812</a></li>
+<li><strong>npm</strong>: npm を v2.11.0 にアップグレードしました。新しいフックとしてライフサイクルイベントの <code>preversion</code>, <code>version</code> と <code>postversion</code> が追加されました。いくつかの SPDX-related ライセンスが変更され、ライセンスファイルが含まれるようになりました。詳細は<a href="https://github.com/npm/npm/releases/tag/v2.11.0">リリースノート</a>をご覧ください。</li>
+</ul>
+<!--
+#### v2.2.1
+-->
+<h4>v2.2.1</h4>
+<!--
+* **http**: reverts the removal of an undocumented `client` property on client connections, this property is being used in the wild, most notably by [request](https://github.com/request/request) which is used by npm. (Michaël Zasso) [#1852](https://github.com/nodejs/io.js/pull/1852).
+-->
+<ul>
+<li><strong>http</strong>: 削除されたドキュメント化されていないクライアントコネクションの <code>client</code> プロパティを元に戻しました。このプロパティは様々な箇所で使われていました。特筆するべきモジュールは <a href="https://github.com/request/request">request</a> です。このモジュールは npm でも使われています。(Michaël Zasso) <a href="https://github.com/nodejs/io.js/pull/1852">#1852</a></li>
+</ul>
+<!--
+### Known issues
+-->
+<h3>既知の問題</h3>
+<!--
+See https://github.com/nodejs/io.js/labels/confirmed-bug for complete and current list of known issues.
+-->
+<p>現在の完全な既知の問題リストは <a href="https://github.com/nodejs/io.js/labels/confirmed-bug">https://github.com/nodejs/io.js/labels/confirmed-bug</a> を参照してください。</p>
+<!--
+* Some problems with unreferenced timers running during `beforeExit` are still to be resolved. See [#1264](https://github.com/nodejs/io.js/issues/1264).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/nodejs/io.js/issues/690)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/nodejs/io.js/issues/760) and fix in [#774](https://github.com/nodejs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/nodejs/io.js/issues/894)
+* `url.resolve` may transfer the auth portion of the url when resolving between two full hosts, see [#1435](https://github.com/nodejs/io.js/issues/1435).
+-->
+<ul>
+<li><code>beforeExit</code> が実行されている最中の非参照のtimersに起因するいくつかの問題は、まだ解決されていません。詳細は <a href="https://github.com/nodejs/io.js/issues/1264">#1264</a> を参照して下さい。</li>
+<li>REPL 内のサロゲートペアがターミナルのフリーズを引き起こすことがあります。 <a href="https://github.com/nodejs/io.js/issues/690">#690</a></li>
+<li><code>process.send()</code> はドキュメントに記述されている通り、本来は同期的に実行されるはずですが、<code>1.0.2</code> にて発生した不具合により非同期的に呼び出されてしまうようになりました。詳細は <a href="https://github.com/nodejs/io.js/issues/760">#760</a> を、修正については <a href="https://github.com/nodejs/io.js/issues/774">#774</a> を参照して下さい。</li>
+<li><code>dns.setServers()</code> を呼び出している間の DNS クエリが、進行中にアサーションに失敗してプロセスをクラッシュさせることがあります。<a href="https://github.com/nodejs/io.js/issues/894">#894</a></li>
+<li><code>url.resolve</code> は2つの完全なホストを解決しようとした際に url の auth の部分を移動する可能性があります。詳細は <a href="https://github.com/nodejs/io.js/issues/1435">#1435</a> を参照してください。</li>
+</ul>
+<!--
+### Community Updates
+-->
+<h2>コミュニティより</h2>
+<!--
+* [Schism and Reconciliation](https://nodesource.com/blog/was-this-trip-really-necessary) in the Node Community by Rod Vagg.
+* First Node TSC Meeting available on [SoundCloud](https://soundcloud.com/node-foundation/tsc-meeting-2015-05-27).
+* io.js have got a new Benchmarking Working Group [nodejs/benchmarking#1](https://github.com/nodejs/benchmarking/issues/1).
+* Blog post about iojs + node.js under Node Foundation by [nodejs.com](http://blog.nodejs.org/2015/05/15/the-nodejs-foundation-benefits-all/).
+* io.js implements new [`good first contribution`](https://github.com/nodejs/io.js/labels/good%20first%20contribution) tag for new contributors.
+* Blog post from [TheNewStack](http://thenewstack.io/io-js-and-node-js-have-united-and-thats-a-good-thing/) about iojs and node.js new relation.
+* Oliver Zeigermann created a [repo](https://github.com/DJCordhose/ecmascript-2015-iojs) about ES6 and iojs implementation.
+-->
+<ul>
+<li>Rod Vagg は Node コミュニティの分裂と和解の<a href="https://nodesource.com/blog/was-this-trip-really-necessary">記事</a>を書きました。</li>
+<li>最初の Node TSC ミーティングは <a href="https://soundcloud.com/node-foundation/tsc-meeting-2015-05-27">SoundCloud</a> で聞くことができます。</li>
+<li>io.js は新しい Benchmarking Working Group を創設しました: <a href="https://github.com/nodejs/benchmarking/issues/1">nodejs/benchmarking#1</a>。</li>
+<li>Node Foundation 下の io.js + node.js についての<a href="http://blog.nodejs.org/2015/05/15/the-nodejs-foundation-benefits-all/">記事</a>。</li>
+<li>io.js は新しいコントリビュータに向けて <a href="https://github.com/nodejs/io.js/labels/good%20first%20contribution"><code>good first contribution</code></a> タグを実装しました。</li>
+<li><a href="http://thenewstack.io/io-js-and-node-js-have-united-and-thats-a-good-thing/">TheNewStack</a> にて io.js と node.js の新しい関係について記事が投稿されました。</li>
+<li>Oliver Zeigermann は ES6 と io.js の実装についての<a href="https://github.com/DJCordhose/ecmascript-2015-iojs">リポジトリ</a> を作成しました。</li>
+</ul>
+<!--
+### Upcoming Events
+-->
+<h2>今後開催されるイベント</h2>
+<!--
+* [NodeConf Adventure](http://nodeconf.com/) tickets are on sale, June 11th - 14th at Walker Creek Ranch, CA
+* [CascadiaJS](http://2015.cascadiajs.com/) tickets are on sale, July 8th - 10th at Washington State
+* [BrazilJS Conf](http://braziljs.com.br/) tickets are on sale, August 21st - 22nd at Shopping Center BarraShoppingSul
+* [NodeConf EU](http://nodeconf.eu/) tickets are on sale, September 6th - 9th at Waterford, Ireland
+-->
+<ul>
+<li><a href="http://nodeconf.com/">NodeConf Adventure</a> のチケットが販売中です。6月11-14日にカリフォルニアのウォーカークリークランチにて開催されます。</li>
+<li><a href="http://2015.cascadiajs.com/">CascadiaJS</a> のチケットが販売中です。7月8-10日にワシントン州にて開催されます。</li>
+<li><a href="http://braziljs.com.br/">BrazilJS Conf</a> のチケットが販売中です。8月21-22日にリオ・グランデ・ド・スール州のBarra Shopping Sulで開催されます。</li>
+<li><a href="http://nodeconf.eu/">NodeConf EU</a> のチケットが販売中です。9月6-9日にアイルランドのウォーターフォードにて開催されます。</li>
+</ul>
+</article><footer><a href="https://github.com/iojs-jp">Organization</a><span>|</span><a href="https://github.com/iojs-jp/blog">Repository</a><span>|</span><a href="https://twitter.com/iojs_jp">Twitter</a></footer></body></html>
